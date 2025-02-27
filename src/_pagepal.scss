@@ -1,0 +1,256 @@
+.highlight-container {
+  pointer-events: none;
+  &.show {
+    animation: walkthrough-fade-in 0.5s ease-in-out;
+  }
+}
+
+.tooltip-modal {
+  position: fixed;
+  border-radius: 8px;
+  padding: 16px;
+  max-width: 300px;
+  min-width: 300px;
+  background-color: #121212;
+  z-index: 9001;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+
+  &.show {
+    animation: walkthrough-fade-in 0.5s;
+  }
+
+  .tooltip-body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+
+    .close-btn {
+      background: transparent;
+      border: none;
+      display: flex;
+      padding: 0;
+
+      .icon-close {
+        fill: $icon-disable;
+        height: 14px;
+        width: 14px;
+        min-width: 14px;
+        color: $white;
+        font-weight: 600;
+      }
+    }
+  
+    .tooltip-content {
+      color: #ffffff;
+      margin-right: 16px;
+    }
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+
+    .progress-indicator {
+      color: #bfbfbf;
+    }
+  }
+
+  .walkthrough-arrow {
+    content: "";
+    position: absolute;
+    border: 5px solid #121212;
+  }
+
+  .walkthrough-arrow-side-left {
+    left: 100%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+  }
+
+  .walkthrough-arrow-side-right {
+    right: 100%;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    border-top-color: transparent;
+  }
+
+  .walkthrough-arrow-side-top {
+    top: 100%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  }
+
+  .walkthrough-arrow-side-bottom {
+    bottom: 100%;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+
+  /* Left/Start + Right/Start */
+  .walkthrough-arrow-side-left.walkthrough-arrow-align-start,
+  .walkthrough-arrow-side-right.walkthrough-arrow-align-start {
+    top: 20px;
+  }
+
+  /* Top/Start + Bottom/Start */
+  .walkthrough-arrow-side-top.walkthrough-arrow-align-start,
+  .walkthrough-arrow-side-bottom.walkthrough-arrow-align-start {
+    left: 20px;
+  }
+
+  /* End/Left + End/Right */
+  .walkthrough-arrow-align-end.walkthrough-arrow-side-left,
+  .walkthrough-arrow-align-end.walkthrough-arrow-side-right {
+    bottom: 20px;
+  }
+
+  /* Top/End + Bottom/End */
+  .walkthrough-arrow-side-top.walkthrough-arrow-align-end,
+  .walkthrough-arrow-side-bottom.walkthrough-arrow-align-end {
+    right: 20px;
+  }
+
+  /* Left/Center + Right/Center */
+  .walkthrough-arrow-side-left.walkthrough-arrow-align-center,
+  .walkthrough-arrow-side-right.walkthrough-arrow-align-center {
+    top: 50%;
+    margin-top: -5px;
+  }
+
+  /* Top/Center + Bottom/Center */
+  .walkthrough-arrow-side-top.walkthrough-arrow-align-center,
+  .walkthrough-arrow-side-bottom.walkthrough-arrow-align-center {
+    left: 50%;
+    margin-left: -5px;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: "aktiv-grotesk", sans-serif;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 10px 18px;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: all .2s ease-in-out;
+    margin: 8px;
+  
+    &:hover {
+      text-decoration: none;
+    }
+  
+    &:focus,
+    &.focus {
+      text-decoration: none;
+    }
+  
+    &:active,
+    &.active {
+      background-image: none;
+      outline: 0;
+    }
+  
+    &.disabled,
+    &:disabled {
+      cursor: not-allowed;
+      opacity: .6;
+      box-shadow: none;
+    }
+  
+    svg,
+    span,
+    i {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  
+    .icon-left + span {
+      margin-left: 7px;
+    }
+  
+    span + .icon-right {
+      margin-left: 7px;
+    }
+  
+    &.disabled,
+    fieldset[disabled] & {
+      pointer-events: none;
+    }
+  }
+
+  .btn-primary {
+    color: #ffffff;
+    background: #0070a8;
+  
+    &:hover {
+      background-color: #015884;
+      &:focus, &.focus {
+        background-color: #013d58;
+      }
+    }
+  
+    &:focus,
+    &.focus {
+      background-color: #013d58;
+    }
+  
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: #013d58;
+    }
+  
+    &:active,
+    &.active {
+      color: #fff;
+      background-color: #013d58;
+    }
+  
+    svg {
+      fill: #fff;
+    }
+  }
+
+  .btn-skip {
+    color: #ffffff;
+    border: none;
+    background: none;
+    font-weight: 600;
+
+    &.hide {
+      display: none;
+    }
+  }
+}
+
+@keyframes walkthrough-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
